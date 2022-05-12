@@ -1,0 +1,64 @@
+<!-- <div class="container">
+    <form class="text-center border border-light p-5" #usersSignin="ngForm" (ngSubmit)="Signin(usersSignin.value)">
+        <p class="h4 mb-4">Sign in</p>
+        <input type="email" name="email" class="form-control mb-4" placeholder="E-mail" ngModel>
+        <input type="password" name="password" class="form-control mb-4" placeholder="Password" ngModel>
+        <input #adminCheckBox id="adminCheckBox" type="checkbox" [checked]="adminCheckBox"
+            (change)="adminChanged(adminCheckBox.checked)" />
+
+        <button color="info" block="true" class="my-4" type="submit">Sign in</button>
+        <p>Not a member?
+            <a class="btn btn-info" routerLink="/register">Register</a>
+        </p>
+    </form>
+</div> -->
+
+<div class="container">
+    <form class="text-center border border-light p-5" nonvalidate [formGroup]="myform" #usersSignin="ngForm"
+        (ngSubmit)="Signin(usersSignin.value)">
+        <!-- <div class="form-group" [ngClass]="{
+    'has-danger': email.invalid && (email.dirty || email.touched),
+    'has-success': email.valid && (email.dirty || email.touched)
+}"> -->
+        <div class="card text-center">
+            <div class="card-header" style="background-color: black;color: white;">
+                Login
+            </div>
+            <div class="card-body">
+                <div class="form-group" [ngClass]="{
+                        'has-danger': email.invalid && (email.dirty || email.touched),
+                        'has-success': email.valid && (email.dirty || email.touched)
+                    }">
+                    <label>Email</label>
+                    <input type="email" class="form-control" formControlName="email" required>
+                    <div class="form-control-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+                        <p *ngIf="email.errors.required" style="color: red;">Email is required</p>
+                    </div>
+                </div>
+
+                <div class="form-group" [ngClass]="{
+                        'has-danger': password.invalid && (password.dirty || password.touched),
+                        'has-success': password.valid && (password.dirty || password.touched)
+                        }">
+                    <label>Password</label>
+                    <input type="password" class="form-control" formControlName="password" required>
+                    <div class="form-control-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+                        <p *ngIf="password.errors.required" style="color: red;">Password is required</p>
+                        <p *ngIf="password.errors.minlength" style="color: red;">Password must be 8 characters long, we need another
+                            {{password.errors.minlength.requiredLength -
+                            password.errors.minlength.actualLength}}
+                            characters
+                        </p>
+                    </div>
+                </div>
+
+                <input #adminCheckBox id="adminCheckBox" type="checkbox" [checked]="adminCheckBox"
+                    (change)="adminChanged(adminCheckBox.checked)" />isAdmin <br><br>
+            </div>
+            <button class="btn btn-primary" color="info" block="true" type="submit" [disabled]='myform.invalid'>Sign in</button><br><br>
+            <p>Not a member?
+                <a class="btn btn-info" routerLink="/register">Register</a>
+            </p>
+        </div>
+    </form>
+</div>

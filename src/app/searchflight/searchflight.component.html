@@ -1,0 +1,71 @@
+<app-usernavbar></app-usernavbar>
+<div class="container">
+    <form class="" #searchflight="ngForm" (ngSubmit)="SearchFlights(searchflight.value)">
+        <div class="row">
+            <div class="col">
+                <div class="md-form mt-0">
+                    <label for="fromplace">From Place</label>
+                    <input type="text" class="form-control" id="fromplace" name="fromplace" ngModel>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="md-form mt-0">
+                    <label for="toplace">To Place</label>
+                    <input type="text" class="form-control" id="toplace" name="toplace" ngModel>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="md-form mt-0">
+                    <label for="fromdate">From Date</label>
+                    <input type=date class="form-control" placeholder="yyyy-mm-dd" name="fromdate" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <div class="md-form mt-0">
+                    <label for="todate">To Date</label>
+                    <input type="date" class="form-control" placeholder="yyyy-mm-dd" name="todate" ngModel>
+                </div>
+            </div>
+            <div class="col">
+                <div class="md-form mt-0">
+                    <button class="btn btn-primary" type="submit" style="margin-top: 30px;margin-bottom: 20px;">Search</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div>
+        <table class="table table bordered" *ngIf='searching'>
+            <thead>
+                <tr>
+                    <th (click)="sort('id')">Id<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('flightname')">Flight Name<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('fromplace')">From Place<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('toplace')">To Place<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('onewayprice')">One Way Price<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('roundtripprice')">Round Trip Price<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('fromdate')">From Date<i class="fa fa-sort"></i></th>
+                    <th (click)="sort('todate')">To Date<i class="fa fa-sort"></i></th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users | orderBy: key:reverse | paginate :{itemsPerPage:5,currentPage:p};">
+                    <td>{{user.id}}</td>
+                    <td>{{user.flightName}}</td>
+                    <td>{{user.fromPlace}}</td>
+                    <td>{{user.toPlace}}</td>
+                    <td>{{user.onewayPrice}}</td>
+                    <td>{{user.roundTripPrice}}</td>
+                    <td>{{user.fromDate}}</td>
+                    <td>{{user.toDate}}</td>
+                    <td>
+                        <a class="btn btn-danger" routerLink="/bookticket/{{user.id}}">Book Ticket</a>
+                    </td>
+                </tr>
+            </tbody>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </table>
+    </div>
+    </div>

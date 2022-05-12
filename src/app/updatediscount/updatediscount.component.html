@@ -1,0 +1,53 @@
+<app-adminnavbar></app-adminnavbar>
+<div class="container">
+    <form #updateDiscount="ngForm" [formGroup]="myform" (ngSubmit)="UpdatedDiscount(updateDiscount.value)">
+        <div class="card text-center">
+            <div class="card-header" style="background-color: black;color: white;">
+                Update Discount
+            </div>
+            <div class="card-body">
+                <div class="form-group" [ngClass]="{
+                    'has-danger': id.invalid && (id.dirty || id.touched),
+                    'has-success': id.valid && (id.dirty || id.touched)
+                }">
+                    <label>ID</label>
+                    <input type="number" name="id" class="form-control" formControlName="id" required name="id"
+                        value="{{Discount.id}}" placeholder="Enter Id" ngModel><br><br>
+                    <div class="form-control-feedback" *ngIf="id.errors && (id.dirty || id.touched)"
+                        style="margin-top: -40px;margin-right: 895px;">
+                        <p *ngIf="id.errors.required" style="color: red;">ID is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': CouponCode.invalid && (CouponCode.dirty || CouponCode.touched),
+                    'has-success': CouponCode.valid && (CouponCode.dirty || CouponCode.touched)
+                }">
+                    <label>Coupon Code</label>
+                    <input type="text" name="couponcode" class="form-control" formControlName="CouponCode" required
+                        name="CouponCode" value="{{Discount.couponCode}}" placeholder="Enter Coupon Code"
+                        ngModel><br><br>
+                    <div class="form-control-feedback"
+                        *ngIf="CouponCode.errors && (CouponCode.dirty || CouponCode.touched)"
+                        style="margin-top: -40px;margin-right: 895px;">
+                        <p *ngIf="CouponCode.errors.required" style="color: red;">Coupon Code is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': DiscountValue.invalid && (DiscountValue.dirty || DiscountValue.touched),
+                    'has-success': DiscountValue.valid && (DiscountValue.dirty || DiscountValue.touched)
+                }">
+                    <label>Discount Value</label>
+                    <input type="number" name="discountvalue" class="form-control" formControlName="DiscountValue"
+                        required name="DiscountValue" value="{{Discount.discountValue}}"
+                        placeholder="Enter Discount Value" ngModel><br><br>
+                    <div class="form-control-feedback"
+                        *ngIf="DiscountValue.errors && (DiscountValue.dirty || DiscountValue.touched)"
+                        style="margin-top: -40px;margin-right: 895px;">
+                        <p *ngIf="DiscountValue.errors.required" style="color: red;">Discount Value is required</p>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit" [disabled]='myform.invalid'>Update</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,105 @@
+<div class="container">
+    <form nonvalidate [formGroup]="myform" #usersRegister="ngForm" (ngSubmit)="Register(usersRegister.value)">
+        <div class="card text-center">
+            <div class="card-header" style="background-color: black;color: white;">
+                Register
+            </div>
+            <div class="card-body">
+                <div class="form-group" [ngClass]="{
+                    'has-danger': UserName.invalid && (UserName.dirty || UserName.touched),
+                    'has-success': UserName.valid && (UserName.dirty || UserName.touched)
+                }">
+                    <label>UserName</label>
+                    <input type="text" class="form-control" formControlName="UserName" required name="UserName"
+                        placeholder="Enter UserName" ngModel><br><br>
+                    <div class="form-control-feedback" *ngIf="UserName.errors && (UserName.dirty || UserName.touched)"
+                        style="margin-top: -40px;margin-right: 920px;">
+                        <p *ngIf="UserName.errors.required" style="color: red;">UserName is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': UserName.invalid && (UserName.dirty || UserName.touched),
+                    'has-success': UserName.valid && (UserName.dirty || UserName.touched)
+                }">
+                    <label>FirstName</label>
+                    <input type="text" name="FirstName" class="form-control" formControlName="FirstName" required
+                        name="FirstName" placeholder="Enter FirstName" ngModel><br><br>
+                    <div class="form-control-feedback"
+                        *ngIf="FirstName.errors && (FirstName.dirty || FirstName.touched)"
+                        style="margin-top: -40px;margin-right: 920px;">
+                        <p *ngIf="FirstName.errors.required" style="color: red;">FirstName is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': LastName.invalid && (LastName.dirty || LastName.touched),
+                    'has-success': LastName.valid && (LastName.dirty || LastName.touched)
+                }">
+                    <label>LastName</label>
+                    <input type="text" name="LastName" class="form-control" formControlName="LastName" required
+                        name="LastName" placeholder="Enter LastName" ngModel><br><br>
+                    <div class="form-control-feedback" *ngIf="LastName.errors && (LastName.dirty || LastName.touched)"
+                        style="margin-top: -40px;margin-right: 920px;">
+                        <p *ngIf="LastName.errors.required" style="color: red;">LastName is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                'has-danger': Age.invalid && (Age.dirty || Age.touched),
+                'has-success': Age.valid && (Age.dirty || Age.touched)
+            }">
+                    <label>Age</label>
+                    <input type="number" name="Age" class="form-control" formControlName="Age" required name="Age"
+                        placeholder="Enter Age" ngModel><br><br>
+                    <div class="form-control-feedback" *ngIf="Age.errors && (Age.dirty || Age.touched)"
+                        style="margin-top: -40px;margin-right: 950px;">
+                        <p *ngIf="Age.errors.required" style="color: red;">Age is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': Address.invalid && (Address.dirty || Address.touched),
+                    'has-success': Address.valid && (Address.dirty || Address.touched)
+                }">
+                    <label>Address</label>
+                    <input type="text" name="Address" class="form-control" formControlName="Address" required
+                        name="Address" placeholder="Enter Address" ngModel><br><br>
+                    <div class="form-control-feedback" *ngIf="Address.errors && (Address.dirty || Address.touched)"
+                        style="margin-top: -40px;margin-right: 920px;">
+                        <p *ngIf="Address.errors.required" style="color: red;">Address is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': Password.invalid && (Password.dirty || Password.touched),
+                    'has-success': Password.valid && (Password.dirty || Password.touched)
+                }">
+                <label>Password</label>
+                <input type="password" name="Password" class="form-control" formControlName="Password" required
+                name="Password" placeholder="Enter Password" ngModel><br><br>
+                <div class="form-control-feedback" *ngIf="Password.errors && (Password.dirty || Password.touched)"
+                        style="margin-top: -40px;margin-right: 920px;">
+                        <p *ngIf="Password.errors.required" style="color: red;">Password is required</p>
+                        <p *ngIf="Password.errors.minlength">Password must be 8 characters long, we need another
+                            {{Password.errors.minlength.requiredLength - Password.errors.minlength.actualLength}} characters
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': ConfirmPassword.invalid && (ConfirmPassword.dirty || ConfirmPassword.touched),
+                    'has-success': ConfirmPassword.valid && (ConfirmPassword.dirty || ConfirmPassword.touched)
+                }">
+                <label>Confirm Password</label>
+                <input type="password" name="ConfirmPassword" class="form-control" formControlName="ConfirmPassword" required
+                name="ConfirmPassword" placeholder="Enter Confirm Password" ngModel><br><br>
+                <div class="form-control-feedback" *ngIf="ConfirmPassword.errors && (ConfirmPassword.dirty || ConfirmPassword.touched)"
+                        style="margin-top: -40px;margin-right: 875px;">
+                        <p *ngIf="ConfirmPassword.errors.required" style="color: red;">ConfirmPassword is required</p>
+                        <p *ngIf="ConfirmPassword.errors.minlength">Confirm Password must be 8 characters long, we need another
+                            {{ConfirmPassword.errors.minlength.requiredLength - ConfirmPassword.errors.minlength.actualLength}} characters
+                        </p>
+                    </div>
+                </div>
+                <input #adminCheckBox id="adminCheckBox" type="checkbox" [checked]="adminCheckBox" 
+                (change)="adminChanged(adminCheckBox.checked)" />isAdmin <br><br>
+                <button class="btn btn-primary" type="submit" [disabled]='myform.invalid'>Register</button>
+            </div>
+        </div>
+    </form>
+</div>

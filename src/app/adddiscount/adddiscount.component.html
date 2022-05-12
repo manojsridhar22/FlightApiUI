@@ -1,0 +1,39 @@
+<app-adminnavbar></app-adminnavbar>
+<div class="container">
+    <form #addDiscount="ngForm" [formGroup]="myform" (ngSubmit)="AddedDiscount(addDiscount.value)">
+        <div class="card text-center">
+            <div class="card-header" style="background-color: black;color: white;">
+                Add Discount
+            </div>
+            <div class="card-body">
+                <div class="form-group" [ngClass]="{
+                    'has-danger': CouponCode.invalid && (CouponCode.dirty || CouponCode.touched),
+                    'has-success': CouponCode.valid && (CouponCode.dirty || CouponCode.touched)
+                }">
+                    <label>Coupon Code</label>
+                    <input type="text" name="CouponCode" class="form-control" formControlName="CouponCode" required
+                        name="CouponCode" placeholder="Enter Coupon Code" ngModel><br><br>
+                    <div class="form-control-feedback"
+                        *ngIf="CouponCode.errors && (CouponCode.dirty || CouponCode.touched)"
+                        style="margin-top: -40px;margin-right: 895px;">
+                        <p *ngIf="CouponCode.errors.required" style="color: red;">Coupon Code is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': DiscountValue.invalid && (DiscountValue.dirty || DiscountValue.touched),
+                    'has-success': DiscountValue.valid && (DiscountValue.dirty || DiscountValue.touched)
+                }">
+                    <label>Discount Value</label>
+                <input type="number" name="DiscountValue" class="form-control" formControlName="DiscountValue" required
+                name="DiscountValue" placeholder="Enter Discount Value" ngModel><br><br>
+                <div class="form-control-feedback"
+                        *ngIf="DiscountValue.errors && (DiscountValue.dirty || DiscountValue.touched)"
+                        style="margin-top: -40px;margin-right: 895px;">
+                        <p *ngIf="DiscountValue.errors.required" style="color: red;">Discount Value is required</p>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit" [disabled]='myform.invalid'>Add</button>
+            </div>
+        </div>
+    </form>
+</div>

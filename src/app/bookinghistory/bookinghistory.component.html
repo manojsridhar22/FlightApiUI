@@ -1,0 +1,37 @@
+<app-usernavbar></app-usernavbar>
+<br>
+<div>
+    <div class="col-sm-6">
+        <input type="text" class="form-control" name="pnr" [(ngModel)]="pnr" (ngModelChange)="Search()"
+            placeholder="Enter PNR to Search">
+    </div>
+</div>
+<table class="table table bordered">
+    <thead>
+        <tr>
+            <th (click)="sort('bookingdate')">Booking Date<i class="fa fa-sort"></i></th>
+            <th (click)="sort('airlinename')">Airline Name<i class="fa fa-sort"></i></th>
+            <th (click)="sort('onewayprice')">Oneway Price<i class="fa fa-sort"></i></th>
+            <th (click)="sort('roundtripprice')">RoundTrip Price<i class="fa fa-sort"></i></th>
+            <th (click)="sort('seatsbooked')">Seats Booked<i class="fa fa-sort"></i></th>
+            <th (click)="sort('pnr')">PNR<i class="fa fa-sort"></i></th>
+            <th (click)="sort('status')">Status<i class="fa fa-sort"></i></th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of usershistory | orderBy: key:reverse | paginate :{itemsPerPage:5,currentPage:p};">
+            <td>{{user.bookingDate}}</td>
+            <td>{{user.airlineName}}</td>
+            <td>{{user.onewayPrice}}</td>
+            <td>{{user.roundTripPrice}}</td>
+            <td>{{user.seatsBooked}}</td>
+            <td>{{user.pnr}}</td>
+            <td>{{user.status}}</td>
+            <td>
+                <button type="button" class="btn btn-primary" (click)="DeleteBookedHistory(user.pnr)">Cancel</button>
+            </td>
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>

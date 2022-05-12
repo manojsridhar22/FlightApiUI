@@ -1,0 +1,56 @@
+<app-adminnavbar></app-adminnavbar>
+<br>
+<div>
+    <div class="col-sm-6">
+        <input type="text" class="form-control" name="airlineName" [(ngModel)]="airlineName" (ngModelChange)="Search()"
+            placeholder="Enter Airline Name to Search">
+
+    </div>
+    <a class="btn btn-info" routerLink="/addairline" style="margin-top: -67px;margin-left: 1200px;">Add Schedule</a>
+</div>
+<table class="table table bordered table table-success table-striped">
+    <thead>
+        <tr>
+            <th (click)="sort('flightnumber')">Flight Number<i class="fa fa-sort"></i></th>
+            <th (click)="sort('airlineName')">Airline Name<i class="fa fa-sort"></i></th>
+            <th (click)="sort('fromplace')">From Place<i class="fa fa-sort"></i></th>
+            <th (click)="sort('toplace')">To Place<i class="fa fa-sort"></i></th>
+            <th (click)="sort('startdate')">Start Date<i class="fa fa-sort"></i></th>
+            <th (click)="sort('enddate')">End Date<i class="fa fa-sort"></i></th>
+            <th (click)="sort('scheduleddays')">Scheduled Days<i class="fa fa-sort"></i></th>
+            <th (click)="sort('specificdays')">Specific Days<i class="fa fa-sort"></i></th>
+            <th (click)="sort('instrumentused')">Instrument Used<i class="fa fa-sort"></i></th>
+            <th (click)="sort('businessclassseats')">Business Class Seats<i class="fa fa-sort"></i></th>
+            <th (click)="sort('nonbusinessclassseats')">Non Business Class Seats<i class="fa fa-sort"></i></th>
+            <th (click)="sort('price')">Price<i class="fa fa-sort"></i></th>
+            <th (click)="sort('rows')">Rows<i class="fa fa-sort"></i></th>
+            <th (click)="sort('mealtype')">Meal Type<i class="fa fa-sort"></i></th>
+            <th (click)="sort('blocked')">Blocked<i class="fa fa-sort"></i></th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let airline of airlines | orderBy: key:reverse | paginate :{itemsPerPage:5,currentPage:p};">
+            <td>{{airline.flightNumber}}</td>
+            <td>{{airline.airlineName}}</td>
+            <td>{{airline.fromPlace}}</td>
+            <td>{{airline.toPlace}}</td>
+            <td>{{airline.startDate}}</td>
+            <td>{{airline.endDate}}</td>
+            <td>{{airline.scheduledDays}}</td>
+            <td>{{airline.specificDays}}</td>
+            <td>{{airline.instrumentUsed}}</td>
+            <td>{{airline.businessClassSeats}}</td>
+            <td>{{airline.nonBusinessClassSeats}}</td>
+            <td>{{airline.price}}</td>
+            <td>{{airline.rows}}</td>
+            <td>{{airline.mealType}}</td>
+            <td>{{airline.blocked}}</td>
+            <td>
+                <button type="button" class="btn btn-primary" (click)="DeleteAirlines(airline.id)">Delete</button>
+                <a class="btn btn-danger" routerLink="/updateairline/{{airline.id}}">Update</a>
+            </td>
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>

@@ -1,0 +1,29 @@
+<app-adminnavbar></app-adminnavbar>
+<br>
+<div>
+    <div class="col-sm-6">
+        <input type="text" class="form-control" name="couponCode" [(ngModel)]="couponCode" (ngModelChange)="Search()"
+            placeholder="Enter Coupon Code to Search">
+    </div>
+    <a class="btn btn-info" routerLink="/adddiscount" style="margin-top: -67px;margin-left: 1200px;">Add Discount</a>
+</div>
+<table class="table table bordered table table-success table-striped">
+    <thead>
+        <tr>
+            <th (click)="sort('couponCode')">Coupon Code<i class="fa fa-sort"></i></th>
+            <th (click)="sort('discountvalue')">Discount Value<i class="fa fa-sort"></i></th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of usersdiscount | orderBy: key:reverse | paginate :{itemsPerPage:5,currentPage:p};">
+            <td>{{user.couponCode}}</td>
+            <td>{{user.discountValue}}</td>
+            <td>
+                <button type="button" class="btn btn-primary" (click)="DeleteDiscount(user.id)">Cancel</button>
+                <a class="btn btn-danger" routerLink="/updatediscount/{{user.id}}">Update</a>
+            </td>
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>

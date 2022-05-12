@@ -1,0 +1,116 @@
+<app-adminnavbar></app-adminnavbar>
+<div class="container">
+    <form nonvalidate [formGroup]="myform" #updateFlight="ngForm" (ngSubmit)="UpdatedFlights(updateFlight.value)">
+        <div class="card text-center">
+            <div class="card-header" style="background-color: black;color: white;">
+                Update Flight
+            </div>
+            <div class="card-body">
+                <div class="form-group" [ngClass]="{
+                    'has-danger': id.invalid && (id.dirty || id.touched),
+                    'has-success': id.valid && (id.dirty || id.touched)
+                }">
+                    <label>ID</label>
+                    <input type="number" name="id" class="form-control" formControlName="id" required name="id"
+                        value="{{Airlines.id}}" placeholder="Enter Id" ngModel><br><br>
+                    <div class="form-control-feedback" *ngIf="id.errors && (id.dirty || id.touched)"
+                        style="margin-top: -40px;margin-right: 895px;">
+                        <p *ngIf="id.errors.required" style="color: red;">ID is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': flightName.invalid && (flightName.dirty || flightName.touched),
+                    'has-success': flightName.valid && (flightName.dirty || flightName.touched)
+                }">
+                    <label>Flight Name</label>
+                    <input type="text" name="flightName" class="form-control" formControlName="flightName" required
+                        name="flightName" value="{{Airlines.flightName}}" placeholder="Enter Flight Name"
+                        ngModel><br><br>
+                    <div class="form-control-feedback"
+                        *ngIf="flightName.errors && (flightName.dirty || flightName.touched)"
+                        style="margin-top: -40px;margin-right: 895px;">
+                        <p *ngIf="flightName.errors.required" style="color: red;">Flight Name is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': fromPlace.invalid && (fromPlace.dirty || fromPlace.touched),
+                    'has-success': fromPlace.valid && (fromPlace.dirty || fromPlace.touched)
+                }">
+                    <label>From Place</label>
+                    <input type="text" name="fromPlace" class="form-control" formControlName="fromPlace" required
+                        name="fromPlace" value="{{Airlines.fromPlace}}" placeholder="Enter From Place" ngModel><br><br>
+                    <div class="form-control-feedback"
+                        *ngIf="fromPlace.errors && (fromPlace.dirty || fromPlace.touched)"
+                        style="margin-top: -40px;margin-right: 895px;">
+                        <p *ngIf="fromPlace.errors.required" style="color: red;">From Place is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': toPlace.invalid && (toPlace.dirty || toPlace.touched),
+                    'has-success': toPlace.valid && (toPlace.dirty || toPlace.touched)
+                }">
+                    <label>To Place</label>
+                    <input type="text" name="toPlace" class="form-control" formControlName="toPlace" required
+                        name="toPlace" value="{{Airlines.toPlace}}" placeholder="Enter To Place" ngModel><br><br>
+                    <div class="form-control-feedback" *ngIf="toPlace.errors && (toPlace.dirty || toPlace.touched)"
+                        style="margin-top: -40px;margin-right: 895px;">
+                        <p *ngIf="toPlace.errors.required" style="color: red;">To Place is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': onewayPrice.invalid && (onewayPrice.dirty || onewayPrice.touched),
+                    'has-success': onewayPrice.valid && (onewayPrice.dirty || onewayPrice.touched)
+                }">
+                    <label>One Way Price</label>
+                    <input type="text" name="onewayPrice" class="form-control" formControlName="onewayPrice" required
+                        name="onewayPrice" value="{{Airlines.onewayPrice}}" placeholder="Enter One Way Price"
+                        ngModel><br><br>
+                    <div class="form-control-feedback"
+                        *ngIf="onewayPrice.errors && (onewayPrice.dirty || onewayPrice.touched)"
+                        style="margin-top: -40px;margin-right: 895px;">
+                        <p *ngIf="onewayPrice.errors.required" style="color: red;">One Way Price is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': roundTripPrice.invalid && (roundTripPrice.dirty || roundTripPrice.touched),
+                    'has-success': roundTripPrice.valid && (roundTripPrice.dirty || roundTripPrice.touched)
+                }">
+                    <label>Round Trip Price</label>
+                    <input type="text" name="roundTripPrice" class="form-control" formControlName="roundTripPrice"
+                        required name="roundTripPrice" value="{{Airlines.roundTripPrice}}"
+                        placeholder="Enter Round Trip Price" ngModel><br><br>
+                    <div class="form-control-feedback"
+                        *ngIf="roundTripPrice.errors && (roundTripPrice.dirty || roundTripPrice.touched)"
+                        style="margin-top: -40px;margin-right: 880px;">
+                        <p *ngIf="roundTripPrice.errors.required" style="color: red;">Round Trip Price is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': fromdate.invalid && (fromdate.dirty || fromdate.touched),
+                    'has-success': fromdate.valid && (fromdate.dirty || fromdate.touched)
+                }">
+                    <label>From Date</label>
+                    <input type="date" name="fromDate" class="form-control" formControlName="fromdate" required
+                        name="fromdate" value="{{Airlines.fromDate}}" placeholder="Enter From Date" ngModel><br><br>
+                    <div class="form-control-feedback" *ngIf="fromdate.errors && (fromdate.dirty || fromdate.touched)"
+                        style="margin-top: -40px;margin-right: 895px;">
+                        <p *ngIf="fromdate.errors.required" style="color: red;">From Date is required</p>
+                    </div>
+                </div>
+                <div class="form-group" [ngClass]="{
+                    'has-danger': todate.invalid && (todate.dirty || todate.touched),
+                    'has-success': todate.valid && (todate.dirty || todate.touched)
+                }">
+                    <label>To Date</label>
+                    <input type="date" name="toDate" class="form-control" formControlName="todate" required
+                        name="todate" value="{{Airlines.toDate}}" placeholder="Enter To Date" ngModel><br><br>
+                    <div class="form-control-feedback" *ngIf="todate.errors && (todate.dirty || todate.touched)"
+                        style="margin-top: -40px;margin-right: 895px;">
+                        <p *ngIf="todate.errors.required" style="color: red;">To Date is required</p>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit" [disabled]='myform.invalid'>Update</button>
+            </div>
+        </div>
+    </form>
+</div>

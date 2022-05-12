@@ -1,0 +1,39 @@
+<app-adminnavbar></app-adminnavbar>
+<br>
+<div>
+    <div class="col-sm-6">
+        <input type="text" class="form-control" name="flightName" [(ngModel)]="flightName" (ngModelChange)="Search()"
+            placeholder="Enter Flight Name to Search">
+    </div>
+    <a class="btn btn-info" routerLink="/addflight" style="margin-top: -67px;margin-left: 1200px;">Add Flight</a>
+</div>
+<table class="table table borderedtable table bordered table table-success table-striped">
+    <thead>
+        <tr>
+            <th (click)="sort('flightName')">Flight Name<i class="fa fa-sort"></i></th>
+            <th (click)="sort('fromplace')">From Place<i class="fa fa-sort"></i></th>
+            <th (click)="sort('toplace')">To Place<i class="fa fa-sort"></i></th>
+            <th (click)="sort('onewayprice')">One Way Price<i class="fa fa-sort"></i></th>
+            <th (click)="sort('roundtripprice')">Round Trip Price<i class="fa fa-sort"></i></th>
+            <th (click)="sort('fromdate')">From Date<i class="fa fa-sort"></i></th>
+            <th (click)="sort('todate')">From Date<i class="fa fa-sort"></i></th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users | orderBy: key:reverse | paginate :{itemsPerPage:5,currentPage:p};">
+            <td>{{user.flightName}}</td>
+            <td>{{user.fromPlace}}</td>
+            <td>{{user.toPlace}}</td>
+            <td>{{user.onewayPrice}}</td>
+            <td>{{user.roundTripPrice}}</td>
+            <td>{{user.fromDate}}</td>
+            <td>{{user.toDate}}</td>
+            <td>
+                <button type="button" class="btn btn-primary" (click)="DeleteFlights(user.id)">Delete</button>
+                <a class="btn btn-danger" routerLink="/updateflight/{{user.id}}">Update</a>
+            </td>
+        </tr>
+    </tbody>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>
